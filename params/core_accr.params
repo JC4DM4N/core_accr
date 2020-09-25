@@ -1,0 +1,3 @@
+10			! planet semi major axis, AU
+0.01			! initial mcore, m_earth
+15			! planetesimal surface density at 5AU, gcm-2
