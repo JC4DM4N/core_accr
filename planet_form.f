@@ -311,7 +311,9 @@ c     this loop sets "index" to be the number in the radius array where the plan
 
             print*,'Mgas=',Mgas(m)/Msun,' Msol, Mdust=',initialMD(m)/M
      $           sun,' Msol'
-            print*, 'Dust-to-gas ratio=', initialMD(m)/Mgas(m)
+            print*, 'Current dust-to-gas ratio=', initialMD(m)/Mgas(m)
+            print*, 'Initial dust-to-gas ratio=', 2.0d0*initialMD(m)/
+     $                                              Mstar
             print*,' '
 
 
