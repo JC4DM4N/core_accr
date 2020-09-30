@@ -1,7 +1,9 @@
 subroutine setup(m)
 
+    use disc_mod
+    use constants_mod
     use everything_mod
-    use disc_module
+
     integer, intent(in) :: m
 
     print*, '-------------------'
@@ -56,7 +58,7 @@ subroutine setup(m)
     enddo
     enddo
 
-    ! calculate sigmagas, extrapolated from values in SIGarray
+    ! calculate sigmagas, extrapolated between values in SIGarray
     i = 1 ! iradius for extrapolated values
     do j=1,500 ! iradius for known values
     do while(RADarray(j).ge.rad(i))
@@ -118,21 +120,25 @@ subroutine setup(m)
     enddo
 
     Mpl = Mcore
-    Mgiso = 50.0d0*(sigmagas(index)/2.4d3)**1.5d0*(rm/AU)**3.0*(Mstar/Msun)**(-0.5d0) ! gas isolation mass
+    ! define initial gas isolation mass
+    Mgiso = 50.0d0*(sigmagas(index)/2.4d3)**1.5d0*(rm/AU)**3.0*(Mstar/Msun)**(-0.5d0)
 
     time = 0.0d0
-    dt = origdt  ! keeps track of what dt is origionally set as
+    ! keeps track of what dt is origionally set as
+    dt = origdt
 
-    drbdt = 0.0d0  !initial core migration is zero
-
+    ! initial core migration is zero
+    drbdt = 0.0d0
+    ! initial gas mass of planet is zero
     Mgas(m) = 0.0d0
     do i=1,numpts-1
-     Mgas(m)=Mgas(m)+(sigmagas(i)*(pi*rad(i+1)**2-pi*rad(i)**2))
+      Mgas(m)=Mgas(m)+(sigmagas(i)*(pi*rad(i+1)**2-pi*rad(i)**2))
     enddo
 
     print*, 'Mgas=',Mgas(m)/Msun,' Msol, Mdust=',initialMD(m)/Msun,' Msol'
     print*, 'Current dust-to-gas ratio=', initialMD(m)/Mgas(m)
-    print*, 'Initial dust-to-gas ratio=', 2.0d0*initialMD(m)/Mstar ! Assumes star-disc intially had q=0.5
+    ! Assumes star-disc intially had q=0.5
+    print*, 'Initial dust-to-gas ratio=', 2.0d0*initialMD(m)/Mstar
     print*, ' '
     print*, '...setup complete'
     print*, '-----------------'

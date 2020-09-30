@@ -1,4 +1,4 @@
-module disc_module
+module disc_mod
 
     implicit none
 
@@ -11,4 +11,4 @@ module disc_module
     real*8 initialMD(100)
     real*8 Mgas(100)
 
-end module disc_module
+end module disc_mod

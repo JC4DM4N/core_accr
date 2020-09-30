@@ -17,8 +17,9 @@ FFLAGS = -O3 -frecord-marker=4 -fdefault-real-8 -Wunused -fbounds-check
 %.o: %.f90
 	$(FC) $(FFLAGS) -c $<
 
-SOURCESAF90 = calc_fg.f90 disc_module.f90 everything_mod.f90 setup.f90 \
-				planet_form_new.f90
+SOURCESAF90 = calc_fg.f90 constants_mod.f90 disc_mod.f90 \
+				everything_mod.f90 migration_mod.f90 setup.f90 \
+				calc_migration.f90 planet_form_new.f90
 
 OBJECTSA    = $(SOURCESAF90:.f90=.o)
 
