@@ -1,8 +1,8 @@
 # core_accr
 Contains code for modelling planet formation via core accretion, based on Ida &amp; Lin (2004)
 
-To compile:
-gfortran -o core_accr planet_form.f
+To compile use the Makefile:
+make
 
 To run:
 ./core_accr
