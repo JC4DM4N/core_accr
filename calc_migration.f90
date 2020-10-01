@@ -1,8 +1,10 @@
 subroutine calc_migration(m)
+
     use constants_mod
     use disc_mod
-    use everything_mod
     use migration_mod
+    use planet_mod
+    use setup_mod
 
     integer, intent(in) :: m
 

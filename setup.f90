@@ -2,7 +2,8 @@ subroutine setup(m)
 
     use disc_mod
     use constants_mod
-    use everything_mod
+    use planet_mod
+    use setup_mod
 
     integer, intent(in) :: m
 
@@ -146,3 +147,28 @@ subroutine setup(m)
 
     return
 end subroutine setup
+
+subroutine read_discfile()
+
+    use disc_mod
+    use constants_mod
+    use everything_mod
+
+    ! Read in evolution of surface density profile of gas disc
+    if (Mstar.eq.Msun) then
+        open(unit=26,file='discMstar1.dat',status='old')
+        print*,'Mstar = 1.0Msun'
+    else if(Mstar.eq.real(2.4d0*Msun))then
+        open(unit=26,file='discABAur.dat',status='old')
+        print*,'Mstar = 2.4Msun'
+    endif
+    ! save values to Tarray and RADarray
+    do Tary=1,1000
+        read (26,*) Tarray(Tary)
+        do Rary=1,500
+            read (26,*) RADarray(Rary), OSA(Tary,Rary)
+        enddo
+    enddo
+    close(26)
+
+end subroutine read_discfile
