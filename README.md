@@ -1,5 +1,5 @@
 # core_accr
-Contains code for modelling planet formation via core accretion, based on Ida &amp; Lin (2004)
+1-dimenstional semi analytic code for modelling planet formation via core accretion, based on Ida &amp; Lin (2004)
 
 To compile use the Makefile:
 make
